@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,11 +9,14 @@ public class CollideDetectionFloatingScoreTxt : MonoBehaviour
 {
     [Header("Floating text of score")]
     [SerializeField] int carrotScore;
-    [SerializeField] int cauliflowerScore;
-    [SerializeField] int chickenScore;
+    [SerializeField] int guavaScore;
+    [SerializeField] int watermelonScore;
+    [SerializeField] int strawberryScore;
+    [SerializeField] int pineappleScore;
     [SerializeField] int bomnbScore;
     [SerializeField] GameObject floatingTxtPrefab;
     private TextMeshPro floatingTxtPrefabText;
+    public int totalScore;
 
     [Header("Audio sources")]
     [SerializeField] AudioSource correctWrongAudioSource;
@@ -24,12 +28,21 @@ public class CollideDetectionFloatingScoreTxt : MonoBehaviour
     private bool isBombParticlePlayable=false;
     [SerializeField] CameraShake CameraShake;
 
+    [Header("Game Life system and score")]
+    [SerializeField] List<GameObject> lifes;
+    public int count;
+    [SerializeField] TextMeshProUGUI scoreTxt;
+
+
 
 
 
     private void Start()
     {
         correctWrongAudioSource = correctWrongAudioSource.GetComponent<AudioSource>();
+
+        bombParticle.Stop();
+        count = 0;
         
     }
 
@@ -44,6 +57,8 @@ public class CollideDetectionFloatingScoreTxt : MonoBehaviour
         {
             bombParticle.Stop();
         }
+
+        scoreTxt.text = totalScore.ToString();
 
     }
 
@@ -62,13 +77,21 @@ public class CollideDetectionFloatingScoreTxt : MonoBehaviour
         {
             showPositiveFloatingScoreTxt(carrotScore);
         }
-        else if (collision.name == "Cauliflower(Clone)")
+        else if (collision.name == "Guava(Clone)")
         {
-            showPositiveFloatingScoreTxt(cauliflowerScore);
+            showPositiveFloatingScoreTxt(guavaScore);
         }
-        else if (collision.name == "Chicken(Clone)")
+        else if (collision.name == "Watermelon(Clone)")
         {
-            showPositiveFloatingScoreTxt(chickenScore);
+            showPositiveFloatingScoreTxt(watermelonScore);
+        }
+        else if (collision.name == "Strawberry(Clone)")
+        {
+            showPositiveFloatingScoreTxt(strawberryScore);
+        }
+        else if (collision.name == "Pineapple(Clone)")
+        {
+            showPositiveFloatingScoreTxt(pineappleScore);
         }
         else if (collision.name == "Bomb(Clone)")
         {
@@ -90,12 +113,13 @@ public class CollideDetectionFloatingScoreTxt : MonoBehaviour
         correctWrongAudioSource.clip = correctAudioClip;
         correctWrongAudioSource.Play();
 
+        totalScore += score;
         floatingTxtPrefabText = floatingTxtPrefab.GetComponent<TextMeshPro>();
         floatingTxtPrefabText.text = "+" + score.ToString();
         floatingTxtPrefabText.color = Color.green;
 
         Instantiate(floatingTxtPrefab, transform.position, Quaternion.identity, transform);
-        Handheld.Vibrate();
+        //Handheld.Vibrate(); //for android
     }
 
     void showNegativeFloatingScoreTxt(int score)
@@ -107,18 +131,27 @@ public class CollideDetectionFloatingScoreTxt : MonoBehaviour
 
         isBombParticlePlayable = true;
 
-        StartCoroutine(CameraShake.Shake(0.15f, 0.3f));
+        //StartCoroutine(CameraShake.Shake(0.15f, 0.4f)); //
 
         correctWrongAudioSource.clip = wrongAudioClip;
         correctWrongAudioSource.Play();
 
+        totalScore += score;
         floatingTxtPrefabText = floatingTxtPrefab.GetComponent<TextMeshPro>();
         floatingTxtPrefabText.text = score.ToString();
         floatingTxtPrefabText.color = Color.red;
 
         Instantiate(floatingTxtPrefab, transform.position, Quaternion.identity, transform);
-        Handheld.Vibrate();
-        StartCoroutine(GamepadVibration());
+        //Handheld.Vibrate(); //for android
+        //StartCoroutine(GamepadVibration()); //for android
+
+        if(count < 4)
+        {
+            lifes[count].SetActive(false);
+            
+        }
+        count++;
+        
     }
 
     IEnumerator GamepadVibration()

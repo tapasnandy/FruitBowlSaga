@@ -11,7 +11,7 @@ public class FloatingTxt : MonoBehaviour
     private void Start()
     {
         Destroy(gameObject, destroyTime);
-        transform.localPosition = new Vector3(0, 2f, 0);
+        transform.localPosition = new Vector3(0, 4f, 0);
         StartFloating();
 
     }

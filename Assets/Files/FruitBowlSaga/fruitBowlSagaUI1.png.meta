@@ -141,10 +141,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -748,7 +748,31 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fruitBowlSagaUI1_0: -8354735210394788804
+      fruitBowlSagaUI1_1: 7792085545544875259
+      fruitBowlSagaUI1_10: 5276847873225787071
+      fruitBowlSagaUI1_11: 4636965173365439254
+      fruitBowlSagaUI1_12: 1181925685085582817
+      fruitBowlSagaUI1_13: 1009977771921000844
+      fruitBowlSagaUI1_14: -1409670242122717372
+      fruitBowlSagaUI1_15: -3297902699216101311
+      fruitBowlSagaUI1_16: -3029290744369919702
+      fruitBowlSagaUI1_17: 1740122358834231178
+      fruitBowlSagaUI1_18: 3580974310790608735
+      fruitBowlSagaUI1_19: -4777563683855300613
+      fruitBowlSagaUI1_2: 2248014726725620604
+      fruitBowlSagaUI1_20: 1456893424841940555
+      fruitBowlSagaUI1_21: 4417392696968419290
+      fruitBowlSagaUI1_22: -3475973390514910935
+      fruitBowlSagaUI1_23: -488497410665033180
+      fruitBowlSagaUI1_3: 1068195390325840440
+      fruitBowlSagaUI1_4: 6894475275082796516
+      fruitBowlSagaUI1_5: -7479800139264696299
+      fruitBowlSagaUI1_6: 7682817100517108836
+      fruitBowlSagaUI1_7: -2463920732710966687
+      fruitBowlSagaUI1_8: 2961254717235993978
+      fruitBowlSagaUI1_9: 6405151233570119363
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
