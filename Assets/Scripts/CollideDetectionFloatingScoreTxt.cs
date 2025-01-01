@@ -119,7 +119,9 @@ public class CollideDetectionFloatingScoreTxt : MonoBehaviour
         floatingTxtPrefabText.color = Color.green;
 
         Instantiate(floatingTxtPrefab, transform.position, Quaternion.identity, transform);
-        //Handheld.Vibrate(); //for android
+
+        
+        
     }
 
     void showNegativeFloatingScoreTxt(int score)
@@ -131,7 +133,11 @@ public class CollideDetectionFloatingScoreTxt : MonoBehaviour
 
         isBombParticlePlayable = true;
 
-        //StartCoroutine(CameraShake.Shake(0.15f, 0.4f)); //
+        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            Handheld.Vibrate(); //for android
+            StartCoroutine(CameraShake.Shake(0.15f, 0.4f));
+        }
 
         correctWrongAudioSource.clip = wrongAudioClip;
         correctWrongAudioSource.Play();
@@ -142,8 +148,7 @@ public class CollideDetectionFloatingScoreTxt : MonoBehaviour
         floatingTxtPrefabText.color = Color.red;
 
         Instantiate(floatingTxtPrefab, transform.position, Quaternion.identity, transform);
-        //Handheld.Vibrate(); //for android
-        //StartCoroutine(GamepadVibration()); //for android
+        StartCoroutine(GamepadVibration()); //for gamepad
 
         if(count < 4)
         {
